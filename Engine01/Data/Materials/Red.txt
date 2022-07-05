@@ -1,0 +1,4 @@
+#Plain red material for testing
+shader=environment/Basic
+texture=Red
+lit=false

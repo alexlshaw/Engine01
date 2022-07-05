@@ -1,0 +1,581 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Utilities">
+      <UniqueIdentifier>{37aa27c8-d586-4e56-99f3-1701d6940948}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Utilities">
+      <UniqueIdentifier>{c509d6bc-5f03-4efe-b01a-bfb866e83859}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libs and DLLs">
+      <UniqueIdentifier>{17c94a6c-af87-4b19-ad44-03da15c015a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Tasks">
+      <UniqueIdentifier>{e46ec7c2-9cca-4957-9e43-0f5ca5bfec21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Tasks">
+      <UniqueIdentifier>{b1260881-5553-481a-90b0-bb51b422c26b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game Objects">
+      <UniqueIdentifier>{4a8f1fd0-5cea-4991-bb1a-6cc453c94162}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Terrain">
+      <UniqueIdentifier>{b1435056-6472-47ef-be58-e545b9f253f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Graphics">
+      <UniqueIdentifier>{02fafb21-b036-456c-a9db-dd77398588f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Terrain">
+      <UniqueIdentifier>{9a96b331-c0a4-40f2-bb4b-8f94b2e5f8cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics">
+      <UniqueIdentifier>{68b349e8-7023-42d2-8cc3-d4762d920150}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game Objects">
+      <UniqueIdentifier>{be9d51c7-11d3-476d-8a64-31c5d87334b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\World">
+      <UniqueIdentifier>{f12385f8-44bd-488e-93ab-0c4d48c0845f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\World">
+      <UniqueIdentifier>{85bf331a-3fcf-4428-a7ec-c6e1026aaf66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\DataFiles">
+      <UniqueIdentifier>{b6272b35-a775-455d-82a6-2c90da79349f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Shaders">
+      <UniqueIdentifier>{e6ce198e-86d8-421f-a4d5-f2c308832c35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Shaders\environment">
+      <UniqueIdentifier>{d4e249c4-83e0-4f16-baf2-73ab42ef0d8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Shaders\ui">
+      <UniqueIdentifier>{0c99faae-5e4a-44bf-bd5e-9cbda125d9b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Textures">
+      <UniqueIdentifier>{dfcacb07-ac42-400a-a0f5-19da132a10dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Materials">
+      <UniqueIdentifier>{32b0caa4-345d-4fc5-a0c8-f1edc9d4122b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Interface">
+      <UniqueIdentifier>{0d479110-7cd1-40c2-8009-4b9f93306480}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Interface">
+      <UniqueIdentifier>{7385df8a-6028-4fcf-8f31-872ed7d168f0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Source Files\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Noise.cpp">
+      <Filter>Source Files\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="glutils.cpp">
+      <Filter>Source Files\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="text2d.cpp">
+      <Filter>Source Files\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Time.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TerrainRenderer.cpp">
+      <Filter>Source Files\Terrain</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Node.cpp">
+      <Filter>Source Files\Terrain</Filter>
+    </ClCompile>
+    <ClCompile Include="TaskManager.cpp">
+      <Filter>Source Files\Tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="Task.cpp">
+      <Filter>Source Files\Tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="BuildNodeTask.cpp">
+      <Filter>Source Files\Tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Cube.cpp">
+      <Filter>Source Files\Game Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Tree.cpp">
+      <Filter>Source Files\Game Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshTools.cpp">
+      <Filter>Source Files\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectReference.cpp">
+      <Filter>Source Files\Game Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Material.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Source Files\Game Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="World.cpp">
+      <Filter>Source Files\World</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldInfo.cpp">
+      <Filter>Source Files\World</Filter>
+    </ClCompile>
+    <ClCompile Include="Skybox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>Source Files\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="OceanRenderer.cpp">
+      <Filter>Source Files\Terrain</Filter>
+    </ClCompile>
+    <ClCompile Include="Voronoi.cpp">
+      <Filter>Source Files\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Math.cpp">
+      <Filter>Source Files\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="AddTreesTask.cpp">
+      <Filter>Source Files\Tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="TreeSpecies.cpp">
+      <Filter>Source Files\World</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicsResourceManager.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="GrassRenderer.cpp">
+      <Filter>Source Files\Terrain</Filter>
+    </ClCompile>
+    <ClCompile Include="Sphere.cpp">
+      <Filter>Source Files\Game Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>Source Files\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Rock.cpp">
+      <Filter>Source Files\Game Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="AddRocksTask.cpp">
+      <Filter>Source Files\Tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="RockType.cpp">
+      <Filter>Source Files\World</Filter>
+    </ClCompile>
+    <ClCompile Include="Frustrum.cpp">
+      <Filter>Source Files\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Plane.cpp">
+      <Filter>Source Files\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElement.cpp">
+      <Filter>Source Files\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldMap.cpp">
+      <Filter>Source Files\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="UIManager.cpp">
+      <Filter>Source Files\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Biome.cpp">
+      <Filter>Source Files\World</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Math.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Noise.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Settings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StopWatch.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="glutils.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="text2d.hpp">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Time.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DebuggingTools.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="TerrainRenderer.h">
+      <Filter>Header Files\Terrain</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Node.h">
+      <Filter>Header Files\Terrain</Filter>
+    </ClInclude>
+    <ClInclude Include="TaskManager.h">
+      <Filter>Header Files\Tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="Task.h">
+      <Filter>Header Files\Tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildNodeTask.h">
+      <Filter>Header Files\Tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Header Files\Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Cube.h">
+      <Filter>Header Files\Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Vertex.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="texture.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Tree.h">
+      <Filter>Header Files\Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshTools.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectReference.h">
+      <Filter>Header Files\Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldInfo.h">
+      <Filter>Header Files\World</Filter>
+    </ClInclude>
+    <ClInclude Include="World.h">
+      <Filter>Header Files\World</Filter>
+    </ClInclude>
+    <ClInclude Include="Skybox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OceanRenderer.h">
+      <Filter>Header Files\Terrain</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Voronoi.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="AddTreesTask.h">
+      <Filter>Header Files\Tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="TreeSpecies.h">
+      <Filter>Header Files\World</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsResourceManager.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="GrassRenderer.h">
+      <Filter>Header Files\Terrain</Filter>
+    </ClInclude>
+    <ClInclude Include="Sphere.h">
+      <Filter>Header Files\Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Rock.h">
+      <Filter>Header Files\Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="AddRocksTask.h">
+      <Filter>Header Files\Tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="RockType.h">
+      <Filter>Header Files\World</Filter>
+    </ClInclude>
+    <ClInclude Include="Frustrum.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Plane.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Biome.h">
+      <Filter>Header Files\World</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldMap.h">
+      <Filter>Header Files\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElement.h">
+      <Filter>Header Files\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="UIManager.h">
+      <Filter>Header Files\Interface</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Data\2Grass128.tga">
+      <Filter>Resource Files\Textures</Filter>
+    </None>
+    <None Include="Data\2Rock128.tga">
+      <Filter>Resource Files\Textures</Filter>
+    </None>
+    <None Include="Data\3Grass128.tga">
+      <Filter>Resource Files\Textures</Filter>
+    </None>
+    <None Include="Data\3Rock128.tga">
+      <Filter>Resource Files\Textures</Filter>
+    </None>
+    <None Include="Data\4Grass128.tga">
+      <Filter>Resource Files\Textures</Filter>
+    </None>
+    <None Include="Data\4Rock128.tga">
+      <Filter>Resource Files\Textures</Filter>
+    </None>
+    <None Include="Data\5Rock128.tga">
+      <Filter>Resource Files\Textures</Filter>
+    </None>
+    <None Include="Data\Arrow.tga">
+      <Filter>Resource Files\Textures</Filter>
+    </None>
+    <None Include="Data\Dirt128.tga">
+      <Filter>Resource Files\Textures</Filter>
+    </None>
+    <None Include="Data\Grass128.tga">
+      <Filter>Resource Files\Textures</Filter>
+    </None>
+    <None Include="Data\MeshGrass.tga">
+      <Filter>Resource Files\Textures</Filter>
+    </None>
+    <None Include="Data\Rock128.tga">
+      <Filter>Resource Files\Textures</Filter>
+    </None>
+    <None Include="Data\Snow128.tga">
+      <Filter>Resource Files\Textures</Filter>
+    </None>
+    <None Include="Data\star.tga">
+      <Filter>Resource Files\Textures</Filter>
+    </None>
+    <None Include="Data\Holstein.tga">
+      <Filter>Resource Files\Textures</Filter>
+    </None>
+    <None Include="Dependencies\SDL2.dll">
+      <Filter>Libs and DLLs</Filter>
+    </None>
+    <None Include="Dependencies\glew32.dll">
+      <Filter>Libs and DLLs</Filter>
+    </None>
+    <None Include="Data\Shaders\environment\Basic.frag">
+      <Filter>Resource Files\Shaders\environment</Filter>
+    </None>
+    <None Include="Data\Shaders\environment\Basic.vert">
+      <Filter>Resource Files\Shaders\environment</Filter>
+    </None>
+    <None Include="Data\Shaders\environment\BasicWireFrame.frag">
+      <Filter>Resource Files\Shaders\environment</Filter>
+    </None>
+    <None Include="Data\Shaders\environment\BasicWireFrame.vert">
+      <Filter>Resource Files\Shaders\environment</Filter>
+    </None>
+    <None Include="Data\Shaders\environment\grass.frag">
+      <Filter>Resource Files\Shaders\environment</Filter>
+    </None>
+    <None Include="Data\Shaders\environment\grass.vert">
+      <Filter>Resource Files\Shaders\environment</Filter>
+    </None>
+    <None Include="Data\Shaders\environment\Ocean.frag">
+      <Filter>Resource Files\Shaders\environment</Filter>
+    </None>
+    <None Include="Data\Shaders\environment\Ocean.vert">
+      <Filter>Resource Files\Shaders\environment</Filter>
+    </None>
+    <None Include="Data\Shaders\ui\pointSprite_2d.frag">
+      <Filter>Resource Files\Shaders\ui</Filter>
+    </None>
+    <None Include="Data\Shaders\ui\pointSprite_2d.vert">
+      <Filter>Resource Files\Shaders\ui</Filter>
+    </None>
+    <None Include="Data\Shaders\environment\skybox.frag">
+      <Filter>Resource Files\Shaders\environment</Filter>
+    </None>
+    <None Include="Data\Shaders\environment\skybox.vert">
+      <Filter>Resource Files\Shaders\environment</Filter>
+    </None>
+    <None Include="Data\Shaders\environment\terrain.frag">
+      <Filter>Resource Files\Shaders\environment</Filter>
+    </None>
+    <None Include="Data\Shaders\environment\terrain.vert">
+      <Filter>Resource Files\Shaders\environment</Filter>
+    </None>
+    <None Include="Data\Shaders\environment\Terrain2.frag">
+      <Filter>Resource Files\Shaders\environment</Filter>
+    </None>
+    <None Include="Data\Shaders\environment\Terrain2.vert">
+      <Filter>Resource Files\Shaders\environment</Filter>
+    </None>
+    <None Include="Data\Shaders\ui\text2d.frag">
+      <Filter>Resource Files\Shaders\ui</Filter>
+    </None>
+    <None Include="Data\Shaders\ui\text2d.vert">
+      <Filter>Resource Files\Shaders\ui</Filter>
+    </None>
+    <None Include="Data\Shaders\environment\watersurface.frag">
+      <Filter>Resource Files\Shaders\environment</Filter>
+    </None>
+    <None Include="Data\Shaders\environment\watersurface.vert">
+      <Filter>Resource Files\Shaders\environment</Filter>
+    </None>
+    <None Include="Data\Shaders\ui\worldmap.frag">
+      <Filter>Resource Files\Shaders\ui</Filter>
+    </None>
+    <None Include="Data\Shaders\ui\worldmap.vert">
+      <Filter>Resource Files\Shaders\ui</Filter>
+    </None>
+    <None Include="Data\Shaders\environment\Sun.frag">
+      <Filter>Resource Files\Shaders\environment</Filter>
+    </None>
+    <None Include="Data\Shaders\environment\Sun.vert">
+      <Filter>Resource Files\Shaders\environment</Filter>
+    </None>
+    <None Include="Data\Shaders\environment\BasicLit.frag">
+      <Filter>Resource Files\Shaders\environment</Filter>
+    </None>
+    <None Include="Data\Shaders\environment\BasicLit.vert">
+      <Filter>Resource Files\Shaders\environment</Filter>
+    </None>
+    <None Include="Data\Shaders\ui\UIElement.frag">
+      <Filter>Resource Files\Shaders\ui</Filter>
+    </None>
+    <None Include="Data\Shaders\ui\UIElement.vert">
+      <Filter>Resource Files\Shaders\ui</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="lib\SDL2.lib">
+      <Filter>Libs and DLLs</Filter>
+    </Library>
+    <Library Include="lib\SDL2main.lib">
+      <Filter>Libs and DLLs</Filter>
+    </Library>
+    <Library Include="..\..\Engine03\Engine03\lib\glew32.lib">
+      <Filter>Libs and DLLs</Filter>
+    </Library>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Data\Font.bmp">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="Data\TestImage.tga">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="Data\Textures\Bark1024.tga">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="Data\Textures\Dirt1024.tga">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="Data\Textures\Grass1024.tga">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="Data\Textures\Leaves128.tga">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="Data\Textures\Rock1024.tga">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="Data\Textures\Sand1024.tga">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="Data\Textures\Snow1024.tga">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="Data\Textures\YellowLeaves128.tga">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="Data\Textures\MeshGrass2.tga">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="Data\Textures\GrassBillboard2.tga">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="Data\Textures\Sun512.tga">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Data\DataFiles\DefaultTree.txt">
+      <Filter>Resource Files\DataFiles</Filter>
+    </Text>
+    <Text Include="Data\Materials\DefaultBark.txt">
+      <Filter>Resource Files\Materials</Filter>
+    </Text>
+    <Text Include="Data\Materials\DefaultLeaves.txt">
+      <Filter>Resource Files\Materials</Filter>
+    </Text>
+    <Text Include="Data\DataFiles\TreeTypes.txt">
+      <Filter>Resource Files\DataFiles</Filter>
+    </Text>
+    <Text Include="Data\DataFiles\SecondTree.txt">
+      <Filter>Resource Files\DataFiles</Filter>
+    </Text>
+    <Text Include="Data\Materials\SecondLeaves.txt">
+      <Filter>Resource Files\Materials</Filter>
+    </Text>
+    <Text Include="Data\Materials\BarkLit.txt">
+      <Filter>Resource Files\Materials</Filter>
+    </Text>
+    <Text Include="Data\Materials\Red.txt">
+      <Filter>Resource Files\Materials</Filter>
+    </Text>
+    <Text Include="Data\Materials\RockLit.txt">
+      <Filter>Resource Files\Materials</Filter>
+    </Text>
+    <Text Include="Data\DataFiles\RockTypes.txt">
+      <Filter>Resource Files\DataFiles</Filter>
+    </Text>
+    <Text Include="Data\DataFiles\BlobbyRock.txt">
+      <Filter>Resource Files\DataFiles</Filter>
+    </Text>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,3 @@
+#leaves material used by second tree
+shader=environment/basic
+texture=YellowLeaves128

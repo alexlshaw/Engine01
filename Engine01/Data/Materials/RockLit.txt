@@ -1,0 +1,4 @@
+#bark material used by default tree
+shader=environment/BasicLit
+texture=Rock1024
+lit=true

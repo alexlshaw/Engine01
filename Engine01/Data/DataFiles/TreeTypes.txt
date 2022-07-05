@@ -1,0 +1,5 @@
+#This file is a list of the different tree species that may be loaded into the world.
+#each line should be associated with a file that contains data for a species of tree.
+
+DefaultTree
+SecondTree

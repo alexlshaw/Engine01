@@ -1,0 +1,6 @@
+#contains the parameters for defining a rock
+pointCount=6
+pointRadius=4.0
+scatterRadius=6.0
+pointYScaling=0.5
+material=RockLit

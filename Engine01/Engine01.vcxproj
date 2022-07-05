@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{11062933-E44C-447B-B7D6-6ADDBA1AB812}</ProjectGuid>
+    <RootNamespace>Engine01</RootNamespace>
+    <SccProjectName>SAK</SccProjectName>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(IncludePath);$(ProjectDir)\include</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LibraryPath>$(LibraryPath);$(ProjectDir)\lib</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>$(IncludePath);$(ProjectDir)\include</IncludePath>
+    <LibraryPath>$(LibraryPath);$(ProjectDir)\lib</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;opengl32.lib;glew32.lib</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>msvcrt.lib</IgnoreSpecificDefaultLibraries>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy /y "$(ProjectDir)Dependencies\*.dll" "$(OutDir)"
+mkdir $(OutDir)Data
+xcopy /y /s "$(ProjectDir)Data\*.*" "$(OutDir)Data"
+mkdir $(OutDir)Data\Shaders
+xcopy /y /s "$(ProjectDir)Data\Shaders\*.*" "$(OutDir)Data\Shaders"</Command>
+      <Message>Copies dependencies to output directory.</Message>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;opengl32.lib;glew32.lib</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy /y "$(ProjectDir)Dependencies\*.dll" "$(OutDir)"
+mkdir $(OutDir)Data
+xcopy /y /s "$(ProjectDir)Data\*.*" "$(OutDir)Data"
+mkdir $(OutDir)Shaders
+xcopy /y /s "$(ProjectDir)Shaders\*.*" "$(OutDir)Shaders"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="AddRocksTask.cpp" />
+    <ClCompile Include="AddTreesTask.cpp" />
+    <ClCompile Include="Biome.cpp" />
+    <ClCompile Include="BuildNodeTask.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Collision.cpp" />
+    <ClCompile Include="Cube.cpp" />
+    <ClCompile Include="Frustrum.cpp" />
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GameObjectReference.cpp" />
+    <ClCompile Include="glutils.cpp" />
+    <ClCompile Include="GraphicsResourceManager.cpp" />
+    <ClCompile Include="GrassRenderer.cpp" />
+    <ClCompile Include="Input.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Material.cpp" />
+    <ClCompile Include="Math.cpp" />
+    <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="MeshTools.cpp" />
+    <ClCompile Include="Node.cpp" />
+    <ClCompile Include="Noise.cpp" />
+    <ClCompile Include="OceanRenderer.cpp" />
+    <ClCompile Include="Plane.cpp" />
+    <ClCompile Include="Rock.cpp" />
+    <ClCompile Include="RockType.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="Skybox.cpp" />
+    <ClCompile Include="Sphere.cpp" />
+    <ClCompile Include="Task.cpp" />
+    <ClCompile Include="TaskManager.cpp" />
+    <ClCompile Include="TerrainRenderer.cpp" />
+    <ClCompile Include="Text2d.cpp" />
+    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="Time.cpp" />
+    <ClCompile Include="Transform.cpp" />
+    <ClCompile Include="Tree.cpp" />
+    <ClCompile Include="TreeSpecies.cpp" />
+    <ClCompile Include="UIElement.cpp" />
+    <ClCompile Include="UIManager.cpp" />
+    <ClCompile Include="Voronoi.cpp" />
+    <ClCompile Include="World.cpp" />
+    <ClCompile Include="WorldInfo.cpp" />
+    <ClCompile Include="WorldMap.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AddRocksTask.h" />
+    <ClInclude Include="AddTreesTask.h" />
+    <ClInclude Include="Biome.h" />
+    <ClInclude Include="BuildNodeTask.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="Collision.h" />
+    <ClInclude Include="Cube.h" />
+    <ClInclude Include="DebuggingTools.h" />
+    <ClInclude Include="Frustrum.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameObjectReference.h" />
+    <ClInclude Include="glutils.h" />
+    <ClInclude Include="GraphicsResourceManager.h" />
+    <ClInclude Include="GrassRenderer.h" />
+    <ClInclude Include="Input.h" />
+    <ClInclude Include="Material.h" />
+    <ClInclude Include="Math.h" />
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="MeshTools.h" />
+    <ClInclude Include="Node.h" />
+    <ClInclude Include="Noise.h" />
+    <ClInclude Include="OceanRenderer.h" />
+    <ClInclude Include="Plane.h" />
+    <ClInclude Include="Rock.h" />
+    <ClInclude Include="RockType.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="Settings.h" />
+    <ClInclude Include="Shader.h" />
+    <ClInclude Include="Skybox.h" />
+    <ClInclude Include="Sphere.h" />
+    <ClInclude Include="Task.h" />
+    <ClInclude Include="TaskManager.h" />
+    <ClInclude Include="TerrainRenderer.h" />
+    <ClInclude Include="Text2d.hpp" />
+    <ClInclude Include="StopWatch.h" />
+    <ClInclude Include="Texture.h" />
+    <ClInclude Include="Time.h" />
+    <ClInclude Include="Transform.h" />
+    <ClInclude Include="Tree.h" />
+    <ClInclude Include="TreeSpecies.h" />
+    <ClInclude Include="UIElement.h" />
+    <ClInclude Include="UIManager.h" />
+    <ClInclude Include="Vertex.h" />
+    <ClInclude Include="Voronoi.h" />
+    <ClInclude Include="World.h" />
+    <ClInclude Include="WorldInfo.h" />
+    <ClInclude Include="WorldMap.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Data\2Grass128.tga" />
+    <None Include="Data\2Rock128.tga" />
+    <None Include="Data\3Grass128.tga" />
+    <None Include="Data\3Rock128.tga" />
+    <None Include="Data\4Grass128.tga" />
+    <None Include="Data\4Rock128.tga" />
+    <None Include="Data\5Rock128.tga" />
+    <None Include="Data\Arrow.tga" />
+    <None Include="Data\Dirt128.tga" />
+    <None Include="Data\Grass128.tga" />
+    <None Include="Data\Holstein.tga" />
+    <None Include="Data\MeshGrass.tga" />
+    <None Include="Data\Rock128.tga" />
+    <None Include="Data\Shaders\environment\Basic.frag" />
+    <None Include="Data\Shaders\environment\Basic.vert" />
+    <None Include="Data\Shaders\environment\BasicLit.frag" />
+    <None Include="Data\Shaders\environment\BasicLit.vert" />
+    <None Include="Data\Shaders\environment\BasicWireFrame.frag" />
+    <None Include="Data\Shaders\environment\BasicWireFrame.vert" />
+    <None Include="Data\Shaders\environment\grass.frag" />
+    <None Include="Data\Shaders\environment\grass.vert" />
+    <None Include="Data\Shaders\environment\Ocean.frag" />
+    <None Include="Data\Shaders\environment\Ocean.vert" />
+    <None Include="Data\Shaders\environment\skybox.frag" />
+    <None Include="Data\Shaders\environment\skybox.vert" />
+    <None Include="Data\Shaders\environment\Sun.frag" />
+    <None Include="Data\Shaders\environment\Sun.vert" />
+    <None Include="Data\Shaders\environment\terrain.frag" />
+    <None Include="Data\Shaders\environment\terrain.vert" />
+    <None Include="Data\Shaders\environment\Terrain2.frag" />
+    <None Include="Data\Shaders\environment\Terrain2.vert" />
+    <None Include="Data\Shaders\environment\watersurface.frag" />
+    <None Include="Data\Shaders\environment\watersurface.vert" />
+    <None Include="Data\Shaders\ui\pointSprite_2d.frag" />
+    <None Include="Data\Shaders\ui\pointSprite_2d.vert" />
+    <None Include="Data\Shaders\ui\text2d.frag" />
+    <None Include="Data\Shaders\ui\text2d.vert" />
+    <None Include="Data\Shaders\ui\UIElement.frag" />
+    <None Include="Data\Shaders\ui\UIElement.vert" />
+    <None Include="Data\Shaders\ui\worldmap.frag" />
+    <None Include="Data\Shaders\ui\worldmap.vert" />
+    <None Include="Data\Snow128.tga" />
+    <None Include="Data\star.tga" />
+    <None Include="Dependencies\glew32.dll" />
+    <None Include="Dependencies\SDL2.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Data\Font.bmp" />
+    <Image Include="Data\TestImage.tga" />
+    <Image Include="Data\Textures\Bark1024.tga" />
+    <Image Include="Data\Textures\Dirt1024.tga" />
+    <Image Include="Data\Textures\Grass1024.tga" />
+    <Image Include="Data\Textures\GrassBillboard2.tga" />
+    <Image Include="Data\Textures\Leaves128.tga" />
+    <Image Include="Data\Textures\MeshGrass2.tga" />
+    <Image Include="Data\Textures\Rock1024.tga" />
+    <Image Include="Data\Textures\Sand1024.tga" />
+    <Image Include="Data\Textures\Snow1024.tga" />
+    <Image Include="Data\Textures\Sun512.tga" />
+    <Image Include="Data\Textures\YellowLeaves128.tga" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\Engine03\Engine03\lib\glew32.lib" />
+    <Library Include="lib\SDL2.lib" />
+    <Library Include="lib\SDL2main.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Data\DataFiles\BlobbyRock.txt" />
+    <Text Include="Data\DataFiles\DefaultTree.txt" />
+    <Text Include="Data\DataFiles\RockTypes.txt" />
+    <Text Include="Data\DataFiles\SecondTree.txt" />
+    <Text Include="Data\DataFiles\TreeTypes.txt" />
+    <Text Include="Data\Materials\BarkLit.txt" />
+    <Text Include="Data\Materials\DefaultBark.txt" />
+    <Text Include="Data\Materials\DefaultLeaves.txt" />
+    <Text Include="Data\Materials\Red.txt" />
+    <Text Include="Data\Materials\RockLit.txt" />
+    <Text Include="Data\Materials\SecondLeaves.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

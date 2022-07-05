@@ -1,0 +1,18 @@
+#contains the parameters for defining the default species of tree
+thicknessModifier=0.025
+branchingThreshold=0.75
+leavesRadius=3.0
+heightToFirstBranches=10.0
+crownCenterHeight=10.0
+crownRadius=10.0
+crownShape=HEMISPHERE
+newNodeDistance=0.5
+#the number of points generated in the space to be colonized. Has a HUGE effect on performance.
+attractionPointCount=300
+radiusOfInfluence=3.0
+killDistance=1.0
+maxIterations=20
+barkMaterial=BarkLit
+leavesMaterial=DefaultLeaves
+#list of biomes the tree can appear in (comma separated, no spaces allowed)
+biomes=TUNDRA,DESERT,GRASSLAND,TAIGA,SWAMP,FOREST,JUNGLE,SAVANNAH,BADLANDS,MARSH,ALPINE,ASHLAND

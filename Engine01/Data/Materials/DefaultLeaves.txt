@@ -1,0 +1,3 @@
+#leaves material used by default tree
+shader=environment/basic
+texture=Leaves128
