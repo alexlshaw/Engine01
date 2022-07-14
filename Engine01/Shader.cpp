@@ -95,14 +95,6 @@ bool Shader::compileShaderFromString(const string& source, GLSLShaderType type)
 		shaderHandle = glCreateShader(GL_GEOMETRY_SHADER);
 		gs = shaderHandle;
 		break;
-	case TESS_CONTROL:
-		shaderHandle = glCreateShader(GL_TESS_CONTROL_SHADER);
-		tcs = shaderHandle;
-		break;
-	case TESS_EVALUATION:
-		shaderHandle = glCreateShader(GL_TESS_EVALUATION_SHADER);
-		tes = shaderHandle;
-		break;
 	default:
 		logString = "Loading Shader: Unrecognised shader type.";
 		return false;

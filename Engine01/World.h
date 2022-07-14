@@ -5,7 +5,6 @@
 //Stores data about nodes, and owns a WorldInfo object which contains all the geography and climate info used to build these nodes
 
 #include <chrono>
-#include "GL\glew.h"
 #include "glm\glm.hpp"
 #include "glm\gtc\matrix_transform.hpp"
 #include "glutils.h"
@@ -33,11 +32,11 @@
 #include "WorldInfo.h"
 #include "WorldMap.h"
 
-static char* arrowPath = "Data/arrow.tga";
-static char* rockPath = "Data/2Rock128.tga";
-static char* grassPath = "Data/4Grass128.tga";
-static char* dirtPath = "Data/Dirt128.tga";
-static char* snowPath = "Data/Snow128.tga";
+const static char* arrowPath = "Data/arrow.tga";
+const static char* rockPath = "Data/2Rock128.tga";
+const static char* grassPath = "Data/4Grass128.tga";
+const static char* dirtPath = "Data/Dirt128.tga";
+const static char* snowPath = "Data/Snow128.tga";
 
 struct NodeGrid	//North is greater z-value, west is greater x-value
 {

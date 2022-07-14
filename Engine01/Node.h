@@ -3,7 +3,7 @@
 
 //This is a holder class for information about a block of terrain data
 
-#include "GL\glew.h"
+#include "glad/glad.h"
 #include "glm\glm.hpp"
 #include <vector>
 

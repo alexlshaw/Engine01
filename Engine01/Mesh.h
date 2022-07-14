@@ -1,7 +1,7 @@
 #ifndef ENGINE01_MESH_H
 #define ENGINE01_MESH_H
 
-#include "gl\glew.h"
+#include "glad/glad.h"
 #include <vector>
 
 #include "Vertex.h"

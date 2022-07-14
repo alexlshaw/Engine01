@@ -19,9 +19,6 @@
     <Filter Include="Header Files\Utilities">
       <UniqueIdentifier>{c509d6bc-5f03-4efe-b01a-bfb866e83859}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Libs and DLLs">
-      <UniqueIdentifier>{17c94a6c-af87-4b19-ad44-03da15c015a6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Tasks">
       <UniqueIdentifier>{e46ec7c2-9cca-4957-9e43-0f5ca5bfec21}</UniqueIdentifier>
     </Filter>
@@ -209,6 +206,9 @@
     </ClCompile>
     <ClCompile Include="Biome.cpp">
       <Filter>Source Files\World</Filter>
+    </ClCompile>
+    <ClCompile Include="glad.c">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -400,12 +400,6 @@
     <None Include="Data\Holstein.tga">
       <Filter>Resource Files\Textures</Filter>
     </None>
-    <None Include="Dependencies\SDL2.dll">
-      <Filter>Libs and DLLs</Filter>
-    </None>
-    <None Include="Dependencies\glew32.dll">
-      <Filter>Libs and DLLs</Filter>
-    </None>
     <None Include="Data\Shaders\environment\Basic.frag">
       <Filter>Resource Files\Shaders\environment</Filter>
     </None>
@@ -490,17 +484,7 @@
     <None Include="Data\Shaders\ui\UIElement.vert">
       <Filter>Resource Files\Shaders\ui</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="lib\SDL2.lib">
-      <Filter>Libs and DLLs</Filter>
-    </Library>
-    <Library Include="lib\SDL2main.lib">
-      <Filter>Libs and DLLs</Filter>
-    </Library>
-    <Library Include="..\..\Engine03\Engine03\lib\glew32.lib">
-      <Filter>Libs and DLLs</Filter>
-    </Library>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Data\Font.bmp">

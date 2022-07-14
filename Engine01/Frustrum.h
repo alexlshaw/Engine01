@@ -18,7 +18,7 @@ public:
 	Frustrum();
 	~Frustrum();
 	void setCamInternals(float angle, float ratio, float nearDistance, float farDistance);	//called once when initialising (or when camera basic properties change)
-	void setCamDef(glm::vec3 &position, glm::vec3 &look, glm::vec3 &up);
+	void setCamDef(glm::vec3 position, glm::vec3 look, glm::vec3 up);
 	int pointInFrustrum(glm::vec3 &p);
 	int sphereInFrustrum(glm::vec3 &p, float radius, int& cachedPlane);
 };

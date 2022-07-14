@@ -1,11 +1,11 @@
 #include <chrono>
-#include "GL\glew.h"
+#include "glad/glad.h"
+#include "GLFW/glfw3.h"
 #include "glm\glm.hpp"
 #include "glm\gtc\matrix_transform.hpp"
 #include "glutils.h"
 #include <math.h>
 #include <iostream>
-#include "SDL\SDL.h"
 #include <stdio.h>
 #include <thread>
 
@@ -36,9 +36,8 @@
 #include "WorldMap.h"
 
 //Declare display and control variables
-SDL_Window* window;
-SDL_GLContext glContext;
-SDL_Event event;
+GLFWwindow* mainWindow = nullptr;
+
 bool exiting = false;
 bool newEvent = false;
 TaskManager* taskManager;
@@ -47,6 +46,7 @@ UIManager* uiManager;
 int screenWidth, screenHeight;
 int frames = 0;
 int fps = 0;
+float delta = 0.0f;	//time since last frame
 
 bool wireframe = false;
 bool debugMode = false;
@@ -74,6 +74,83 @@ OceanRenderer* oceanRenderer;
 GrassRenderer* grassRenderer;
 Scene* mainScene;
 Skybox* sky;
+
+
+//glfw callbacks
+void error_callback(int error, const char* description)
+{
+	fprintf_s(stderr, "Error: %s\n", description);
+}
+
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+	if (key == GLFW_KEY_W && action == GLFW_PRESS || action == GLFW_REPEAT)
+	{
+		mainCamera->forward(delta * velocity);
+	}
+	if (key == GLFW_KEY_S && action == GLFW_PRESS || action == GLFW_REPEAT)
+	{
+		mainCamera->forward(delta * -velocity);
+	}
+	if (key == GLFW_KEY_A && action == GLFW_PRESS || action == GLFW_REPEAT)
+	{
+		mainCamera->pan(delta * velocity);
+	}
+	if (key == GLFW_KEY_D && action == GLFW_PRESS || action == GLFW_REPEAT)
+	{
+		mainCamera->pan(delta * -velocity);
+	}
+	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS || action == GLFW_REPEAT)
+	{
+		mainCamera->rise(delta * velocity);
+	}
+	if (key == GLFW_KEY_LEFT_SHIFT && action == GLFW_PRESS || action == GLFW_REPEAT)
+	{
+		mainCamera->rise(delta * -velocity);
+	}
+	if (key == GLFW_KEY_TAB && action == GLFW_PRESS)
+	{
+
+	}
+	if (key == GLFW_KEY_F && action == GLFW_PRESS)
+	{
+
+	}
+	if (key == GLFW_KEY_K && action == GLFW_PRESS)
+	{
+
+	}
+	if (key == GLFW_KEY_M && action == GLFW_PRESS)
+	{
+
+	}
+	if (key == GLFW_KEY_N && action == GLFW_PRESS)
+	{
+
+	}
+	if (key == GLFW_KEY_O && action == GLFW_PRESS)
+	{
+
+	}
+	if (key == GLFW_KEY_R && action == GLFW_PRESS)
+	{
+
+	}
+	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+	{
+		exiting = true;
+	}
+}
+
+void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
+{
+
+}
+
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
+{
+
+}
 
 bool initTest()
 {
@@ -117,25 +194,13 @@ int exit()
 	uiManager = nullptr;
 	delete resourceManager;
 	resourceManager = nullptr;
-	SDL_Quit();
+	glfwTerminate();
 	//DEBUG_WAIT_FOR_CONSOLE_INPUT();	//Uncomment to allow all console output to be seen before the program exits
 	return 0;
 }
 
 bool initGL()
 {
-	//glew
-	DEBUG_PRINT("Init glew\n");
-	glewExperimental = GL_TRUE;
-	GLenum err = glewInit();
-	if (err != GLEW_OK)
-	{
-		DEBUG_PRINT("Error initialising glew\n");
-		return false;
-	}
-	DEBUG_PRINT("GlewInit: Expected warning GL_INVALID_ENUM\n");
-	printGLErrors();
-	DEBUG_PRINT("Init glew finished\n");
 	//gl stuff
 	DEBUG_PRINT("Init GL\n");
 	glClearColor(fogColor.r, fogColor.g, fogColor.b, 1.0f);
@@ -155,24 +220,22 @@ bool initGL()
 	return false;
 }
 
-bool initSDL()
+int initGLFW()
 {
-	DEBUG_PRINT("Init SDL\n");
-	if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
+	DEBUG_PRINT("Init GLFW\n");
+	glfwSetErrorCallback(error_callback);
+	if (!glfwInit())
 	{
-		return false;
+		printf("GLFW init error\n");
+		return -1;
 	}
-	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
-	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 5);
-	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
-	Uint32 windowFlags = SDL_WINDOW_OPENGL;
-
+	//Create a windowed mode window and its OpenGL context. Note: If I hint anything over 3.0 it doesn't like it, but testing shows I'm getting a 4.6 context
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
 	if (fullScreen)
 	{
 		screenWidth = fullScreenWidth;
 		screenHeight = fullScreenHeight;
-		windowFlags |= SDL_WINDOW_FULLSCREEN;
 	}
 	else
 	{
@@ -182,18 +245,67 @@ bool initSDL()
 	lastMouseX = screenWidth / 2;
 	lastMouseY = screenWidth / 2;
 	orthoProjection = glm::ortho(0.0f, (float)screenWidth, 0.0f, (float)screenHeight);
-	window = SDL_CreateWindow("Engine 01", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, screenWidth, screenHeight, windowFlags);
-	if (window == NULL)
+
+	mainWindow = glfwCreateWindow(screenWidth, screenHeight, "Engine01", NULL, NULL);
+	if (!mainWindow)
 	{
-		return false;
+		glfwTerminate();
+		return -2;
 	}
-	glContext = SDL_GL_CreateContext(window);
-	SDL_GL_SetSwapInterval(1);
-	SDL_SetRelativeMouseMode(SDL_TRUE);
-	DEBUG_PRINT_GL_ERRORS();
-	DEBUG_PRINT("Init SDL finished\n");
-	return true;
+	glfwMakeContextCurrent(mainWindow);
+	//input handlers
+	glfwSetKeyCallback(mainWindow, key_callback);
+	glfwSetMouseButtonCallback(mainWindow, mouse_button_callback);
+	glfwSetScrollCallback(mainWindow, scroll_callback);
+	//set up glad
+	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+	{
+		printf("GLAD loader initialization error!\n");
+		return -3;
+	}
+	glfwSwapInterval(1);
+	return 1;
 }
+
+//bool initSDL()
+//{
+//	DEBUG_PRINT("Init SDL\n");
+//	if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
+//	{
+//		return false;
+//	}
+//	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
+//	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 5);
+//	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+//	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
+//	Uint32 windowFlags = SDL_WINDOW_OPENGL;
+//
+//	if (fullScreen)
+//	{
+//		screenWidth = fullScreenWidth;
+//		screenHeight = fullScreenHeight;
+//		windowFlags |= SDL_WINDOW_FULLSCREEN;
+//	}
+//	else
+//	{
+//		screenWidth = windowedScreenWidth;
+//		screenHeight = windowedScreenHeight;
+//	}
+//	lastMouseX = screenWidth / 2;
+//	lastMouseY = screenWidth / 2;
+//	orthoProjection = glm::ortho(0.0f, (float)screenWidth, 0.0f, (float)screenHeight);
+//	window = SDL_CreateWindow("Engine 01", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, screenWidth, screenHeight, windowFlags);
+//	if (window == NULL)
+//	{
+//		return false;
+//	}
+//	glContext = SDL_GL_CreateContext(window);
+//	SDL_GL_SetSwapInterval(1);
+//	SDL_SetRelativeMouseMode(SDL_TRUE);
+//	DEBUG_PRINT_GL_ERRORS();
+//	DEBUG_PRINT("Init SDL finished\n");
+//	return true;
+//}
 
 void draw()
 {
@@ -229,7 +341,7 @@ void draw()
 		printText2D(camAngle, 15, screenHeight - 40, 15);
 		printText2D(sceneInfo, 15, screenHeight - 60, 15);
 	}
-	SDL_GL_SwapWindow(window);
+	glfwSwapBuffers(mainWindow);
 }
 
 void update(float delta)
@@ -272,10 +384,10 @@ void update(float delta)
 bool init(CStopWatch* timer)
 {
 	//returns true if both parts suceeded
-	bool initSDLsuccess = initSDL();
-	if (!initSDLsuccess)
+	int initGLFWsuccess = initGLFW();
+	if (initGLFWsuccess < 1)
 	{
-		DEBUG_PRINT("Failed to initialise SDL\n");
+		DEBUG_PRINT("Failed to initialise GLFW\n");
 	}
 	bool initGLsuccess = initGL();
 	if (!initGLsuccess)
@@ -283,7 +395,7 @@ bool init(CStopWatch* timer)
 		DEBUG_PRINT("Failed to initialise OpenGL\n");
 	}
 	const GLubyte* version = glGetString(GL_VERSION);
-	if (initSDLsuccess && initGLsuccess && glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE)
+	if ((initGLFWsuccess == 1) && initGLsuccess && glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE)
 	{
 		resourceManager = new GraphicsResourceManager();
 		uiManager = new UIManager(screenWidth, screenHeight, resourceManager);
@@ -329,26 +441,21 @@ int main(int argc, char* args[])
 	sprintf_s(startupTime, 32, "Total startup time: %f\n", timer.GetElapsedSeconds());
 	DEBUG_PRINT(startupTime);
 	timer.Reset();
-	while (!exiting)
+	while (!exiting && !glfwWindowShouldClose(mainWindow))
 	{
-		while (SDL_PollEvent(&event))
-		{
-			if (event.type == SDL_QUIT) exiting = true;
-			newEvent = true;
-		}
-		float delta = timer.GetElapsedSeconds();
+		delta = timer.GetElapsedSeconds();
 		timer.Reset();
 		//handle logic updates
 		update(delta);
 		//handle input
-		handleKeys(delta, mainCamera);
-		handleMouse(delta, event, mainCamera);
+		//handleKeys(delta, mainCamera);
+		//handleMouse(delta, mainCamera);
 		//handle in game time based events
 		timePassing(delta);
 		//draw everything
 		draw();
 		frames++;
-		newEvent = false;
+		glfwPollEvents();
 		//No point running at a higher framerate than 60 for the time being, so we give the computer a bit of a break if there is any time left
 		delta = timer.GetElapsedSeconds() * 1000.0f;
 		if (delta < 16.6f)

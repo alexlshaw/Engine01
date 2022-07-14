@@ -1,7 +1,7 @@
 #ifndef ENGINE01_SPHERE_H
 #define ENGINE01_SPHERE_H
 
-#include "GL\glew.h"
+#include "glad/glad.h"
 #include "glm\glm.hpp"
 #include <vector>
 

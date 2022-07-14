@@ -17,6 +17,7 @@
     <SccAuxPath>SAK</SccAuxPath>
     <SccLocalPath>SAK</SccLocalPath>
     <SccProvider>SAK</SccProvider>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -56,12 +57,15 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;opengl32.lib;glew32.lib</AdditionalDependencies>
-      <IgnoreSpecificDefaultLibraries>msvcrt.lib</IgnoreSpecificDefaultLibraries>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <PostBuildEvent>
@@ -84,7 +88,8 @@ xcopy /y /s "$(ProjectDir)Data\Shaders\*.*" "$(OutDir)Data\Shaders"</Command>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;opengl32.lib;glew32.lib</AdditionalDependencies>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
     <PostBuildEvent>
@@ -106,6 +111,7 @@ xcopy /y /s "$(ProjectDir)Shaders\*.*" "$(OutDir)Shaders"</Command>
     <ClCompile Include="Frustrum.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectReference.cpp" />
+    <ClCompile Include="glad.c" />
     <ClCompile Include="glutils.cpp" />
     <ClCompile Include="GraphicsResourceManager.cpp" />
     <ClCompile Include="GrassRenderer.cpp" />
@@ -234,8 +240,7 @@ xcopy /y /s "$(ProjectDir)Shaders\*.*" "$(OutDir)Shaders"</Command>
     <None Include="Data\Shaders\ui\worldmap.vert" />
     <None Include="Data\Snow128.tga" />
     <None Include="Data\star.tga" />
-    <None Include="Dependencies\glew32.dll" />
-    <None Include="Dependencies\SDL2.dll" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Data\Font.bmp" />
@@ -253,11 +258,6 @@ xcopy /y /s "$(ProjectDir)Shaders\*.*" "$(OutDir)Shaders"</Command>
     <Image Include="Data\Textures\YellowLeaves128.tga" />
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\..\Engine03\Engine03\lib\glew32.lib" />
-    <Library Include="lib\SDL2.lib" />
-    <Library Include="lib\SDL2main.lib" />
-  </ItemGroup>
-  <ItemGroup>
     <Text Include="Data\DataFiles\BlobbyRock.txt" />
     <Text Include="Data\DataFiles\DefaultTree.txt" />
     <Text Include="Data\DataFiles\RockTypes.txt" />
@@ -272,5 +272,14 @@ xcopy /y /s "$(ProjectDir)Shaders\*.*" "$(OutDir)Shaders"</Command>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\glm.0.9.9.800\build\native\glm.targets" Condition="Exists('..\packages\glm.0.9.9.800\build\native\glm.targets')" />
+    <Import Project="..\packages\glfw.3.3.7\build\native\glfw.targets" Condition="Exists('..\packages\glfw.3.3.7\build\native\glfw.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\glm.0.9.9.800\build\native\glm.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\glm.0.9.9.800\build\native\glm.targets'))" />
+    <Error Condition="!Exists('..\packages\glfw.3.3.7\build\native\glfw.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\glfw.3.3.7\build\native\glfw.targets'))" />
+  </Target>
 </Project>

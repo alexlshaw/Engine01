@@ -1,7 +1,7 @@
 #ifndef ENGINE01_MATERIAL_H
 #define ENGINE01_MATERIAL_H
 
-#include "GL\glew.h"
+#include "glad/glad.h"
 #include <map>
 
 #include "Camera.h"

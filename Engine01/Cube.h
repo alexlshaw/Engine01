@@ -1,7 +1,6 @@
 #ifndef ENGINE01_CUBE_H
 #define ENGINE01_CUBE_H
 
-#include "GL\glew.h"
 #include "glm\glm.hpp"
 #include <vector>
 

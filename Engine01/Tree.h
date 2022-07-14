@@ -3,7 +3,7 @@
 
 #include <deque>
 #include <forward_list>
-#include "gl\glew.h"
+#include "glad/glad.h"
 #include "glm\glm.hpp"
 #include "glm\gtx\rotate_vector.hpp"
 #include <vector>

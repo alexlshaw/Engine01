@@ -1,7 +1,7 @@
 #ifndef ENGINE01_VERTEX_H
 #define ENGINE01_VERTEX_H
 
-#include "GL\glew.h"
+#include "glad/glad.h"
 #include "glm\glm.hpp"
 
 struct SimpleVertex			//simplevertex is used by the terrain renderer and only tracks position

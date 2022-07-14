@@ -1,7 +1,7 @@
 #ifndef ENGINE01_SKYBOX_H
 #define ENGINE01_SKYBOX_H
 
-#include <gl\glew.h>
+#include "glad/glad.h"
 #include "glm\glm.hpp"
 #include <vector>
 

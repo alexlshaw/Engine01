@@ -1,6 +1,6 @@
 #include "Input.h"
 
-void handleKeys(float delta, Camera* cam)
+/*void handleKeys(float delta, Camera* cam)
 {
 	const Uint8 *keys = SDL_GetKeyboardState(nullptr);
 	if (keys[SDL_SCANCODE_W])
@@ -126,4 +126,4 @@ void handleMouse(float delta, SDL_Event event, Camera* cam)
 			}
 		}
 	}
-}
+}*/

@@ -1,7 +1,7 @@
 #ifndef ENGINE01_SHADER_H
 #define ENGINE01_SHADER_H
 
-#include "Gl\glew.h"
+#include "glad/glad.h"
 #include "glm\glm.hpp"
 #include <string>
 
@@ -15,9 +15,7 @@ using glm::mat3;
 enum GLSLShaderType {
 	VERTEX,
 	FRAGMENT,
-	GEOMETRY,
-	TESS_CONTROL,
-	TESS_EVALUATION
+	GEOMETRY
 };
 
 class Shader

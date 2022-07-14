@@ -1,9 +1,8 @@
 #ifndef ENGINE01_UIMANAGER_H
 #define ENGINE01_UIMANAGER_H
 
-#include "GL\glew.h"
+#include "glad/glad.h"
 #include "glm\glm.hpp"
-#include "SDL\SDL.h"
 #include <vector>
 
 #include "DebuggingTools.h"
@@ -31,8 +30,8 @@ public:
 	~UIManager();
 	void drawInterface(glm::mat4 projectionMatrix);
 	void drawInterfaceRec(glm::mat4 projectionMatrix, UIElement* currentElement);
-	void handleMouseInput(SDL_Event* mouseEvent);
-	void handleKeyboardInput(SDL_Event* keyboardEvent);
+	//void handleMouseInput(SDL_Event* mouseEvent);
+	//void handleKeyboardInput(SDL_Event* keyboardEvent);
 	void addElement(UIElement* element);
 	void screenResize(int newWidth, int newHeight);
 };

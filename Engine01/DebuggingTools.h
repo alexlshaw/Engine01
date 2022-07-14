@@ -1,7 +1,7 @@
 #ifndef ENGINE01_DEBUGGINGTOOLS_H
 #define ENGINE01_DEBUGGINGTOOLS_H
 
-#include "Gl/glew.h"
+#include "glad/glad.h"
 #include <iostream>
 
 //Set up our debug printing tools
@@ -38,12 +38,12 @@ inline void printGLErrors()
 		case GL_OUT_OF_MEMORY:
 			DEBUG_PRINT("GL_OUT_OF_MEMORY\n");
 			break;
-		case GL_STACK_UNDERFLOW:
-			DEBUG_PRINT("GL_STACK_UNDERFLOW\n");
-			break;
-		case GL_STACK_OVERFLOW:
-			DEBUG_PRINT("GL_STACK_OVERFLOW\n");
-			break;
+		//case GL_STACK_UNDERFLOW:
+		//	DEBUG_PRINT("GL_STACK_UNDERFLOW\n");
+		//	break;
+		//case GL_STACK_OVERFLOW:
+		//	DEBUG_PRINT("GL_STACK_OVERFLOW\n");
+		//	break;
 		default:
 			DEBUG_PRINT("An OpenGL error with an unknown code occured.\n");
 			break;
