@@ -1,13 +1,13 @@
 #ifndef ENGINE01_GLUTILS_H
 #define ENGINE01_GLUTILS_H
 
-class GLUtils
-{
-public:
-    GLUtils();
+#include <cstdio>
+#include "glad/glad.h"
 
-    static int checkForOpenGLError(const char *, int);
-    static void dumpGLInfo(bool dumpExtensions = false);
-};
+namespace GLUtils
+{
+    int checkForOpenGLError(const char *, int);
+    void dumpGLInfo(bool dumpExtensions = false);
+}
 
 #endif

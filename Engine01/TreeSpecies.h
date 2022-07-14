@@ -9,7 +9,7 @@
 #include "GraphicsResourceManager.h"
 #include "Material.h"
 
-const static enum CrownShape
+const enum CrownShape
 {
 	HEMISPHERE,
 	SPHERE,

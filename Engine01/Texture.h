@@ -1,9 +1,9 @@
 #ifndef ENGINE01_TEXTURE_H
 #define ENGINE01_TEXTURE_H
 
-#include "glad/glad.h"
 #include <cstdlib>
 #include <vector>
+#include "glad/glad.h"
 
 GLbyte* readTGABits(const char *szFileName, GLint *iWidth, GLint *iHeight, GLint *iComponents, GLenum *eFormat, GLbyte *pData = nullptr);
 

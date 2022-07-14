@@ -1,9 +1,9 @@
 #ifndef ENGINE01_UIMANAGER_H
 #define ENGINE01_UIMANAGER_H
 
+#include <vector>
 #include "glad/glad.h"
 #include "glm\glm.hpp"
-#include <vector>
 
 #include "DebuggingTools.h"
 #include "GraphicsResourceManager.h"

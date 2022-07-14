@@ -1,11 +1,5 @@
 #include "glutils.h"
 
-#include "glad/glad.h"
-
-#include <cstdio>
-
-GLUtils::GLUtils() {}
-
 int GLUtils::checkForOpenGLError(const char * file, int line) {
     //
     // Returns 1 if an OpenGL error occurred, 0 otherwise.

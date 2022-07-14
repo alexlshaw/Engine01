@@ -2,11 +2,10 @@
 #define ENGINE01_NODE_H
 
 //This is a holder class for information about a block of terrain data
+#include <vector>
 
 #include "glad/glad.h"
 #include "glm\glm.hpp"
-#include <vector>
-
 #include "Settings.h"
 
 enum NodeState { UNBUILT, BUILDING, BUILT, HM_PUSHED, READY };

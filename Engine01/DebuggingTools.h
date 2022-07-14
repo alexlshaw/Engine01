@@ -1,8 +1,8 @@
 #ifndef ENGINE01_DEBUGGINGTOOLS_H
 #define ENGINE01_DEBUGGINGTOOLS_H
 
-#include "glad/glad.h"
 #include <iostream>
+#include "glad/glad.h"
 
 //Set up our debug printing tools
 #ifdef _DEBUG

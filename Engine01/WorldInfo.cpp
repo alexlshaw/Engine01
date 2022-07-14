@@ -329,7 +329,7 @@ Site* WorldInfo::findVoronoiCellAtIndex(int x, int z)
 
 	//start by searching to the right
 	float rightSearchDistanceY = 0.0f;						//how far we've looked to the right
-	int rightIndex = mid + 1;								//the index of the closest point to the right of mid
+	unsigned int rightIndex = mid + 1;								//the index of the closest point to the right of mid
 	float rangeToRight = initialSearchRange;				//the distance to the above point	
 	Site* closestRight = closest;							//the actual point to the right that's closest
 	while (rightSearchDistanceY < searchRange && rightIndex < voro->sites.size())
@@ -413,7 +413,7 @@ float WorldInfo::distanceToMatchingSite(Corner* corner, std::function<bool(Site*
 	//start by searching to the right
 	bool matchOnRight = false;
 	float rightSearchDistanceY = 0.0f;						//how far we've looked to the right
-	int rightIndex = mid + 1;								//the index of the closest point to the right of mid
+	unsigned int rightIndex = mid + 1;								//the index of the closest point to the right of mid
 	float rangeToRight = initialSearchRange;				//the distance to the above point	
 	Site* closestRight = closest;							//the actual point to the right that's closest
 	while (rightSearchDistanceY < searchRange && rightIndex < voro->sites.size())

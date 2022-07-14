@@ -139,7 +139,7 @@ void Scene::deleteReferencesByTag(int tag)
 void Scene::addObjectReferenceBatch(std::vector<GameObjectReference*> batch)
 {
 	sceneObjectsLock.lock();
-	for (int i = 0; i < batch.size(); i++)
+	for (unsigned int i = 0; i < batch.size(); i++)
 	{
 		addObjectReference(batch[i]);		//this can be massively optimized
 	}

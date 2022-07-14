@@ -1,8 +1,9 @@
 #ifndef ENGINE01_MATERIAL_H
 #define ENGINE01_MATERIAL_H
 
-#include "glad/glad.h"
 #include <map>
+
+#include "glad/glad.h"
 
 #include "Camera.h"
 #include "Settings.h"

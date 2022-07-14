@@ -1,13 +1,10 @@
 #include <chrono>
+#include <iostream>
+#include <thread>
+
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
 #include "glm\glm.hpp"
-#include "glm\gtc\matrix_transform.hpp"
-#include "glutils.h"
-#include <math.h>
-#include <iostream>
-#include <stdio.h>
-#include <thread>
 
 #include "Camera.h"
 #include "Cube.h"
@@ -51,11 +48,6 @@ float delta = 0.0f;	//time since last frame
 bool wireframe = false;
 bool debugMode = false;
 
-int mousePosX;
-int mousePosY;
-double lastMouseX = (double)(screenWidth / 2);
-double lastMouseY = (double)(screenHeight / 2);
-
 int minScreenDimension;
 
 //display stuff variables
@@ -75,74 +67,10 @@ GrassRenderer* grassRenderer;
 Scene* mainScene;
 Skybox* sky;
 
-
 //glfw callbacks
 void error_callback(int error, const char* description)
 {
 	fprintf_s(stderr, "Error: %s\n", description);
-}
-
-void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
-{
-	bool keyDown = action == GLFW_PRESS || action == GLFW_REPEAT;
-	switch (key)
-	{
-	case GLFW_KEY_W:
-		keyWState = keyDown;
-		break;
-	case GLFW_KEY_S:
-		keySState = keyDown;
-		break;
-	case GLFW_KEY_A:
-		keyAState = keyDown;
-		break;
-	case GLFW_KEY_D:
-		keyDState = keyDown;
-		break;
-	case GLFW_KEY_SPACE:
-		keySpaceState = keyDown;
-		break;
-	case GLFW_KEY_LEFT_SHIFT:
-		keyLShiftState = keyDown;
-		break;
-	}
-	if (key == GLFW_KEY_F && action == GLFW_PRESS)
-	{
-		mainCamera->floating = !mainCamera->floating;
-	}
-	if (key == GLFW_KEY_M && action == GLFW_PRESS)
-	{
-		worldMap->visible = !worldMap->visible;
-	}
-	if (key == GLFW_KEY_N && action == GLFW_PRESS)
-	{
-		worldMap->cycleActiveMapType();
-	}
-	if (key == GLFW_KEY_O && action == GLFW_PRESS)
-	{
-		debugMode = !debugMode;
-	}
-	if (key == GLFW_KEY_R && action == GLFW_PRESS)
-	{
-		velocity = velocity == walkingSpeed ? boostSpeed : walkingSpeed;
-	}
-	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
-	{
-		exiting = true;
-	}
-}
-
-void mouse_button_callback(GLFWwindow* window, int button, int action, int mods) {}
-
-void scroll_callback(GLFWwindow* window, double xoffset, double yoffset) {}
-
-void cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
-{
-	double deltaX = lastMouseX - xpos;
-	double deltaY = lastMouseY - ypos;
-	lastMouseX = xpos;
-	lastMouseY = ypos;
-	mainCamera->updateDirection((float)deltaX, (float)deltaY);
 }
 
 bool initTest()
@@ -245,17 +173,17 @@ int initGLFW()
 	}
 	glfwMakeContextCurrent(mainWindow);
 	//window size dependent stuff
-	lastMouseX = (double)(screenWidth / 2);
-	lastMouseY = (double)(screenWidth / 2);
+	Input::lastMouseX = (double)(screenWidth / 2);
+	Input::lastMouseY = (double)(screenWidth / 2);
 	orthoProjection = glm::ortho(0.0f, (float)screenWidth, 0.0f, (float)screenHeight);
 
 	//input handlers
 	glfwSetInputMode(mainWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-	glfwSetKeyCallback(mainWindow, key_callback);
-	glfwSetMouseButtonCallback(mainWindow, mouse_button_callback);
-	glfwSetScrollCallback(mainWindow, scroll_callback);
-	glfwSetCursorPosCallback(mainWindow, cursor_position_callback);
-	glfwGetCursorPos(mainWindow, &lastMouseX, &lastMouseY);	//update lastX and lastY so first cursor movement doesn't register as hundreds of pixels
+	glfwSetKeyCallback(mainWindow, Input::key_callback);
+	glfwSetMouseButtonCallback(mainWindow, Input::mouse_button_callback);
+	glfwSetScrollCallback(mainWindow, Input::scroll_callback);
+	glfwSetCursorPosCallback(mainWindow, Input::cursor_position_callback);
+	glfwGetCursorPos(mainWindow, &Input::lastMouseX, &Input::lastMouseY);	//update lastX and lastY so first cursor movement doesn't register as hundreds of pixels
 	//set up glad
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 	{
@@ -303,34 +231,49 @@ void draw()
 	glfwSwapBuffers(mainWindow);
 }
 
-void update(float delta)
+void updatePlayerAndInput(float delta)
 {
+	//process camera look
+	mainCamera->updateDirection(Input::getMouseHorizontalAxis() * rotationSpeed * delta, Input::getMouseVerticalAxis() * rotationSpeed * delta);
 	//process camera movement
-	if (keyWState)
-	{
-		mainCamera->forward(delta * velocity);
-	}
-	else if (keySState)
-	{
-		mainCamera->forward(delta * -velocity);
-	}
-	if (keyAState)
-	{
-		mainCamera->pan(delta * velocity);
-	}
-	else if (keyDState)
-	{
-		mainCamera->pan(delta * -velocity);
-	}
-	if (keySpaceState)
+	mainCamera->forward(delta * velocity * Input::getVerticalAxis());
+	mainCamera->pan(delta * velocity * Input::getHorizontalAxis());
+	if (Input::getKeyState(GLFW_KEY_SPACE))
 	{
 		mainCamera->rise(delta * velocity);
 	}
-	else if (keyLShiftState)
+	else if (Input::getKeyState(GLFW_KEY_LEFT_SHIFT))
 	{
 		mainCamera->rise(delta * -velocity);
 	}
+	if (Input::getKeyDown(GLFW_KEY_F))
+	{
+		mainCamera->floating = !mainCamera->floating;
+	}
+	if (Input::getKeyDown(GLFW_KEY_M))
+	{
+		worldMap->visible = !worldMap->visible;
+	}
+	if (Input::getKeyDown(GLFW_KEY_N))
+	{
+		worldMap->cycleActiveMapType();
+	}
+	if (Input::getKeyDown(GLFW_KEY_O))
+	{
+		debugMode = !debugMode;
+	}
+	if (Input::getKeyDown(GLFW_KEY_R))
+	{
+		velocity = velocity == walkingSpeed ? boostSpeed : walkingSpeed;
+	}
+	if (Input::getKeyDown(GLFW_KEY_ESCAPE))
+	{
+		exiting = true;
+	}
+}
 
+void update(float delta)
+{
 	//make sure the camera does not stray out of the bounds of the world
 	if (mainCamera->position.x < 0.0f)
 	{
@@ -354,7 +297,7 @@ void update(float delta)
 		float desiredHeight = EYE_HEIGHT + mainWorld->getTerrainHeightAtPoint(mainCamera->position.x, mainCamera->position.z);
 		if (mainCamera->position.y > desiredHeight)
 		{
-			mainCamera->position.y -= 0.5f * GRAVITY * delta * delta + delta * fallingVelocity;
+			mainCamera->position.y -= (0.5f * GRAVITY * delta * delta) + (delta * fallingVelocity);
 			fallingVelocity += GRAVITY * delta;
 		}
 		else
@@ -430,17 +373,16 @@ int main(int argc, char* args[])
 	{
 		delta = timer.GetElapsedSeconds();
 		timer.Reset();
-		//handle logic updates
+		Input::update();
+		glfwPollEvents();
+		//handle game state updates
+		updatePlayerAndInput(delta);
 		update(delta);
-		//handle input
-		//handleKeys(delta, mainCamera);
-		//handleMouse(delta, mainCamera);
 		//handle in game time based events
 		timePassing(delta);
 		//draw everything
 		draw();
 		frames++;
-		glfwPollEvents();
 		//No point running at a higher framerate than 60 for the time being, so we give the computer a bit of a break if there is any time left
 		delta = timer.GetElapsedSeconds() * 1000.0f;
 		if (delta < 16.6f)

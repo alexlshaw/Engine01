@@ -1,9 +1,10 @@
 #ifndef ENGINE01_SHADER_H
 #define ENGINE01_SHADER_H
 
+#include <string>
+
 #include "glad/glad.h"
 #include "glm\glm.hpp"
-#include <string>
 
 using std::string;
 using glm::vec2;

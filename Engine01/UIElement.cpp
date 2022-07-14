@@ -2,6 +2,8 @@
 
 UIElement::UIElement()
 {
+	mesh = nullptr;
+	hasFocus = false;
 	visible = true;
 	parent = nullptr;
 	texture = nullptr;

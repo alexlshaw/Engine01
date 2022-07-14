@@ -8,8 +8,8 @@ Contains all the magic numbers which control the application
 #include "glm\glm.hpp"
 
 //ENUMS
-const static enum lookDirection {SOUTHWEST, NORTHWEST, NORTHEAST, SOUTHEAST};
-const static enum frustrumIntersection { OUTSIDE, INTERSECT, INSIDE };
+const enum lookDirection {SOUTHWEST, NORTHWEST, NORTHEAST, SOUTHEAST};
+const enum frustrumIntersection { OUTSIDE, INTERSECT, INSIDE };
 const static int SPLAT_SAND = 0;
 const static int SPLAT_DIRT = 1;
 const static int SPLAT_GRASS = 2;
@@ -42,6 +42,7 @@ const static float SEA_LEVEL = 0.0f;	//The height below which is considered to b
 static float walkingSpeed = 10.0f;		//how fast you move when walking
 static float boostSpeed = 150.0f;		//how fast you move when boosting
 static float velocity = walkingSpeed;	//the distance you should move in a second
+static float rotationSpeed = 360.0f;	//the number of degrees by which your view should be able to rotate in a second
 const float EYE_HEIGHT = 1.8f;			//how high the camera is above the terrain
 const float GRAVITY = 9.81f;			//how fast falling accellerates
 
