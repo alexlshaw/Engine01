@@ -96,9 +96,6 @@
     <ClCompile Include="TerrainRenderer.cpp">
       <Filter>Source Files\Terrain</Filter>
     </ClCompile>
-    <ClCompile Include="Input.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Node.cpp">
       <Filter>Source Files\Terrain</Filter>
     </ClCompile>

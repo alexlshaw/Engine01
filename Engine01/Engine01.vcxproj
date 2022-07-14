@@ -115,7 +115,6 @@ xcopy /y /s "$(ProjectDir)Shaders\*.*" "$(OutDir)Shaders"</Command>
     <ClCompile Include="glutils.cpp" />
     <ClCompile Include="GraphicsResourceManager.cpp" />
     <ClCompile Include="GrassRenderer.cpp" />
-    <ClCompile Include="Input.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="Math.cpp" />

@@ -53,8 +53,8 @@ bool debugMode = false;
 
 int mousePosX;
 int mousePosY;
-int lastMouseX = screenWidth / 2;
-int lastMouseY = screenHeight / 2;
+double lastMouseX = (double)(screenWidth / 2);
+double lastMouseY = (double)(screenHeight / 2);
 
 int minScreenDimension;
 
@@ -84,57 +84,47 @@ void error_callback(int error, const char* description)
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
-	if (key == GLFW_KEY_W && action == GLFW_PRESS || action == GLFW_REPEAT)
+	bool keyDown = action == GLFW_PRESS || action == GLFW_REPEAT;
+	switch (key)
 	{
-		mainCamera->forward(delta * velocity);
-	}
-	if (key == GLFW_KEY_S && action == GLFW_PRESS || action == GLFW_REPEAT)
-	{
-		mainCamera->forward(delta * -velocity);
-	}
-	if (key == GLFW_KEY_A && action == GLFW_PRESS || action == GLFW_REPEAT)
-	{
-		mainCamera->pan(delta * velocity);
-	}
-	if (key == GLFW_KEY_D && action == GLFW_PRESS || action == GLFW_REPEAT)
-	{
-		mainCamera->pan(delta * -velocity);
-	}
-	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS || action == GLFW_REPEAT)
-	{
-		mainCamera->rise(delta * velocity);
-	}
-	if (key == GLFW_KEY_LEFT_SHIFT && action == GLFW_PRESS || action == GLFW_REPEAT)
-	{
-		mainCamera->rise(delta * -velocity);
-	}
-	if (key == GLFW_KEY_TAB && action == GLFW_PRESS)
-	{
-
+	case GLFW_KEY_W:
+		keyWState = keyDown;
+		break;
+	case GLFW_KEY_S:
+		keySState = keyDown;
+		break;
+	case GLFW_KEY_A:
+		keyAState = keyDown;
+		break;
+	case GLFW_KEY_D:
+		keyDState = keyDown;
+		break;
+	case GLFW_KEY_SPACE:
+		keySpaceState = keyDown;
+		break;
+	case GLFW_KEY_LEFT_SHIFT:
+		keyLShiftState = keyDown;
+		break;
 	}
 	if (key == GLFW_KEY_F && action == GLFW_PRESS)
 	{
-
-	}
-	if (key == GLFW_KEY_K && action == GLFW_PRESS)
-	{
-
+		mainCamera->floating = !mainCamera->floating;
 	}
 	if (key == GLFW_KEY_M && action == GLFW_PRESS)
 	{
-
+		worldMap->visible = !worldMap->visible;
 	}
 	if (key == GLFW_KEY_N && action == GLFW_PRESS)
 	{
-
+		worldMap->cycleActiveMapType();
 	}
 	if (key == GLFW_KEY_O && action == GLFW_PRESS)
 	{
-
+		debugMode = !debugMode;
 	}
 	if (key == GLFW_KEY_R && action == GLFW_PRESS)
 	{
-
+		velocity = velocity == walkingSpeed ? boostSpeed : walkingSpeed;
 	}
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 	{
@@ -142,14 +132,17 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 	}
 }
 
-void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
+void mouse_button_callback(GLFWwindow* window, int button, int action, int mods) {}
+
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset) {}
+
+void cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
 {
-
-}
-
-void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
-{
-
+	double deltaX = lastMouseX - xpos;
+	double deltaY = lastMouseY - ypos;
+	lastMouseX = xpos;
+	lastMouseY = ypos;
+	mainCamera->updateDirection((float)deltaX, (float)deltaY);
 }
 
 bool initTest()
@@ -232,31 +225,37 @@ int initGLFW()
 	//Create a windowed mode window and its OpenGL context. Note: If I hint anything over 3.0 it doesn't like it, but testing shows I'm getting a 4.6 context
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
+
 	if (fullScreen)
 	{
 		screenWidth = fullScreenWidth;
 		screenHeight = fullScreenHeight;
+		mainWindow = glfwCreateWindow(screenWidth, screenHeight, "Engine01", glfwGetPrimaryMonitor(), NULL);
 	}
 	else
 	{
 		screenWidth = windowedScreenWidth;
 		screenHeight = windowedScreenHeight;
+		mainWindow = glfwCreateWindow(screenWidth, screenHeight, "Engine01", NULL, NULL);
 	}
-	lastMouseX = screenWidth / 2;
-	lastMouseY = screenWidth / 2;
-	orthoProjection = glm::ortho(0.0f, (float)screenWidth, 0.0f, (float)screenHeight);
-
-	mainWindow = glfwCreateWindow(screenWidth, screenHeight, "Engine01", NULL, NULL);
 	if (!mainWindow)
 	{
 		glfwTerminate();
 		return -2;
 	}
 	glfwMakeContextCurrent(mainWindow);
+	//window size dependent stuff
+	lastMouseX = (double)(screenWidth / 2);
+	lastMouseY = (double)(screenWidth / 2);
+	orthoProjection = glm::ortho(0.0f, (float)screenWidth, 0.0f, (float)screenHeight);
+
 	//input handlers
+	glfwSetInputMode(mainWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 	glfwSetKeyCallback(mainWindow, key_callback);
 	glfwSetMouseButtonCallback(mainWindow, mouse_button_callback);
 	glfwSetScrollCallback(mainWindow, scroll_callback);
+	glfwSetCursorPosCallback(mainWindow, cursor_position_callback);
+	glfwGetCursorPos(mainWindow, &lastMouseX, &lastMouseY);	//update lastX and lastY so first cursor movement doesn't register as hundreds of pixels
 	//set up glad
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 	{
@@ -266,46 +265,6 @@ int initGLFW()
 	glfwSwapInterval(1);
 	return 1;
 }
-
-//bool initSDL()
-//{
-//	DEBUG_PRINT("Init SDL\n");
-//	if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
-//	{
-//		return false;
-//	}
-//	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
-//	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 5);
-//	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-//	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
-//	Uint32 windowFlags = SDL_WINDOW_OPENGL;
-//
-//	if (fullScreen)
-//	{
-//		screenWidth = fullScreenWidth;
-//		screenHeight = fullScreenHeight;
-//		windowFlags |= SDL_WINDOW_FULLSCREEN;
-//	}
-//	else
-//	{
-//		screenWidth = windowedScreenWidth;
-//		screenHeight = windowedScreenHeight;
-//	}
-//	lastMouseX = screenWidth / 2;
-//	lastMouseY = screenWidth / 2;
-//	orthoProjection = glm::ortho(0.0f, (float)screenWidth, 0.0f, (float)screenHeight);
-//	window = SDL_CreateWindow("Engine 01", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, screenWidth, screenHeight, windowFlags);
-//	if (window == NULL)
-//	{
-//		return false;
-//	}
-//	glContext = SDL_GL_CreateContext(window);
-//	SDL_GL_SetSwapInterval(1);
-//	SDL_SetRelativeMouseMode(SDL_TRUE);
-//	DEBUG_PRINT_GL_ERRORS();
-//	DEBUG_PRINT("Init SDL finished\n");
-//	return true;
-//}
 
 void draw()
 {
@@ -346,6 +305,32 @@ void draw()
 
 void update(float delta)
 {
+	//process camera movement
+	if (keyWState)
+	{
+		mainCamera->forward(delta * velocity);
+	}
+	else if (keySState)
+	{
+		mainCamera->forward(delta * -velocity);
+	}
+	if (keyAState)
+	{
+		mainCamera->pan(delta * velocity);
+	}
+	else if (keyDState)
+	{
+		mainCamera->pan(delta * -velocity);
+	}
+	if (keySpaceState)
+	{
+		mainCamera->rise(delta * velocity);
+	}
+	else if (keyLShiftState)
+	{
+		mainCamera->rise(delta * -velocity);
+	}
+
 	//make sure the camera does not stray out of the bounds of the world
 	if (mainCamera->position.x < 0.0f)
 	{
