@@ -1,10 +1,9 @@
 #ifndef ENGINE01_SPHERE_H
 #define ENGINE01_SPHERE_H
 
-#include "GL\glew.h"
-#include "glm\glm.hpp"
 #include <vector>
-
+#include "glad/glad.h"
+#include "glm\glm.hpp"
 #include "Camera.h"
 #include "GameObject.h"
 #include "Material.h"

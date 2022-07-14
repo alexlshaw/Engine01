@@ -220,10 +220,10 @@ WorldMap* World::generateWorldMap()
 			{
 				r0 = 0;
 				g0 = 0;
-				b0 = 255 - (byte)(glm::min(128.0f, -point.topography));
+				b0 = 255 - (byte)(glm::min<float>(128.0f, -point.topography));
 				r1 = 0;
 				g1 = 0;
-				b1 = 255 - (byte)(glm::min(128.0f, -point.topography));
+				b1 = 255 - (byte)(glm::min<float>(128.0f, -point.topography));
 			}
 			else
 			{

@@ -8,7 +8,7 @@
 #include "Settings.h"
 #include "TreeSpecies.h"
 
-const static enum biomes {TUNDRA = 0, DESERT, GRASSLAND, TAIGA, SWAMP, FOREST, JUNGLE, SAVANNAH, BADLAND, MARSH, ALPINE, ASHLAND};
+const enum biomes {TUNDRA = 0, DESERT, GRASSLAND, TAIGA, SWAMP, FOREST, JUNGLE, SAVANNAH, BADLAND, MARSH, ALPINE, ASHLAND};
 
 class Biome
 {

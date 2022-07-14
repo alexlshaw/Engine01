@@ -4,8 +4,6 @@
 #include "Mesh.h"
 #include "Texture.h"
 
-#include "SDL\SDL.h"
-
 class UIElement
 {
 protected:
@@ -25,7 +23,7 @@ public:
 	virtual void resize(float x, float y, glm::vec2 newSize);
 	virtual void handleMouseLeftClick(float xLocation, float yLocation);
 	virtual void handleMouseLeftUnclick(float xLocation, float yLocation);
-	virtual void handleKeypress(SDL_Event* keyboardEvent);
+	//virtual void handleKeypress(SDL_Event* keyboardEvent);
 	void addChild(UIElement* childElement);
 	bool locationInElement(float x, float y);	//Determines if the specified location falls within the element (in terms of its parent's coordinate space)
 	glm::vec2 getLocation();					//gets location of the element as it sees it (in terms of its parent's coordinate space)

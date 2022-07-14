@@ -1,10 +1,9 @@
 #ifndef ENGINE01_SKYBOX_H
 #define ENGINE01_SKYBOX_H
 
-#include <gl\glew.h>
-#include "glm\glm.hpp"
 #include <vector>
-
+#include "glad/glad.h"
+#include "glm\glm.hpp"
 #include "Camera.h"
 #include "GraphicsResourceManager.h"
 #include "Mesh.h"

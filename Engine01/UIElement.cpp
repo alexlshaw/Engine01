@@ -2,6 +2,8 @@
 
 UIElement::UIElement()
 {
+	mesh = nullptr;
+	hasFocus = false;
 	visible = true;
 	parent = nullptr;
 	texture = nullptr;
@@ -76,10 +78,10 @@ void UIElement::resize(float x, float y, glm::vec2 newSize)
 	//now that we have changed the size, we may not be able to properly display all child elements. We should update the layout to best fit them
 }
 
-void UIElement::handleKeypress(SDL_Event* keyboardEvent)
-{
-
-}
+//void UIElement::handleKeypress(SDL_Event* keyboardEvent)
+//{
+//
+//}
 
 void UIElement::handleMouseLeftClick(float xLocation, float yLocation)
 {
@@ -91,7 +93,7 @@ void UIElement::handleMouseLeftClick(float xLocation, float yLocation)
 		float internalMouseX = xLocation - xPosition;
 		float internalMouseY = yLocation - yPosition;
 		//start handling clicks down the object chain
-		for (Uint32 i = 0; i < children.size(); i++)
+		for (unsigned int i = 0; i < children.size(); i++)
 		{
 			if (children.at(i)->locationInElement(internalMouseX, internalMouseY))
 			{
@@ -104,7 +106,7 @@ void UIElement::handleMouseLeftClick(float xLocation, float yLocation)
 void UIElement::handleMouseLeftUnclick(float xLocation, float yLocation)
 {
 	//when handling the mouse being released, we don't care about position, just focus
-	for (Uint32 i = 0; i < children.size(); i++)
+	for (unsigned int i = 0; i < children.size(); i++)
 	{
 		float internalMouseX = xLocation - xPosition;
 		float internalMouseY = yLocation - yPosition;

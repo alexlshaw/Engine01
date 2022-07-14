@@ -1,9 +1,9 @@
 #ifndef ENGINE01_MESH_H
 #define ENGINE01_MESH_H
 
-#include "gl\glew.h"
 #include <vector>
 
+#include "glad/glad.h"
 #include "Vertex.h"
 
 class Mesh

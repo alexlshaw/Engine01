@@ -17,7 +17,6 @@ private:
 	glm::mat4 viewMatrix;
 	glm::mat4 viewMatrixOrigin;
 	glm::mat4 projectionMatrix;
-	glm::vec3 right;
 	glm::vec3 up;
 
 	float nearPlaneDistance = 0.1f;
@@ -53,7 +52,5 @@ public:
 	bool facing(Transform transform);
 	Frustrum frustrum;
 };
-
-const static float LOOK_SENSITIVITY = 0.5f;
 
 #endif

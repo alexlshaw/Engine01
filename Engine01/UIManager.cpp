@@ -20,73 +20,73 @@ UIManager::~UIManager()
 	//no need to worry about deleting shader/defaultTexture, resource manager takes care of that
 }
 
-void UIManager::handleMouseInput(SDL_Event* mouseEvent)
-{
-	//if the event is a mousewheel motion:
-	if (mouseEvent->type == SDL_MOUSEWHEEL)
-	{
-		//Find the top level element that currently has focus
-		//pass the event to it
-	}
-	else if (mouseEvent->type == SDL_MOUSEBUTTONDOWN) //if the event is a click of some sort:
-	{
-		float xLocation = (float)mouseEvent->button.x;
-		float yLocation = (float)(height - mouseEvent->button.y);	//UI elements are defined in bottom to top coordinate space, which is the opposite of what SDL gives for click coordinates
-		//find the element that currently has focus
-		//find the element that the mouse is over
-		UIElement* currentFocus = nullptr;
-		UIElement* newTarget = nullptr;
-		for (Uint32 i = 0; i < topLevelElements.size(); i++)
-		{
-			if (topLevelElements.at(i)->hasFocus)
-			{
-				currentFocus = topLevelElements.at(i);
-			}
-			if (topLevelElements.at(i)->locationInElement(xLocation, yLocation))
-			{
-				newTarget = topLevelElements.at(i);
-			}
-		}
-		//handle a potential click outside the currently focused
-		if (currentFocus != nullptr)
-		{
-			if (newTarget == nullptr || newTarget != currentFocus)
-			{
-				//do stuff here (some elements may demand focus or be hidden when they lose focus)
-			}
-		}
-		//Call the handleMouse method for the targeted element
-		if (newTarget != nullptr)
-		{
-			newTarget->handleMouseLeftClick(xLocation, yLocation);
-		}
-	}
-	else if (mouseEvent->type == SDL_MOUSEBUTTONUP)
-	{
-		float xLocation = (float)mouseEvent->button.x;
-		float yLocation = (float)(height - mouseEvent->button.y);	//UI elements are defined in bottom to top coordinate space, which is the opposite of what SDL gives for click coordinates
-		for (Uint32 i = 0; i < topLevelElements.size(); i++)
-		{
-			if (topLevelElements.at(i)->hasFocus)
-			{
-				topLevelElements.at(i)->handleMouseLeftUnclick(xLocation, yLocation);
-			}
-		}
-	}
-}
+//void UIManager::handleMouseInput(SDL_Event* mouseEvent)
+//{
+//	//if the event is a mousewheel motion:
+//	if (mouseEvent->type == SDL_MOUSEWHEEL)
+//	{
+//		//Find the top level element that currently has focus
+//		//pass the event to it
+//	}
+//	else if (mouseEvent->type == SDL_MOUSEBUTTONDOWN) //if the event is a click of some sort:
+//	{
+//		float xLocation = (float)mouseEvent->button.x;
+//		float yLocation = (float)(height - mouseEvent->button.y);	//UI elements are defined in bottom to top coordinate space, which is the opposite of what SDL gives for click coordinates
+//		//find the element that currently has focus
+//		//find the element that the mouse is over
+//		UIElement* currentFocus = nullptr;
+//		UIElement* newTarget = nullptr;
+//		for (Uint32 i = 0; i < topLevelElements.size(); i++)
+//		{
+//			if (topLevelElements.at(i)->hasFocus)
+//			{
+//				currentFocus = topLevelElements.at(i);
+//			}
+//			if (topLevelElements.at(i)->locationInElement(xLocation, yLocation))
+//			{
+//				newTarget = topLevelElements.at(i);
+//			}
+//		}
+//		//handle a potential click outside the currently focused
+//		if (currentFocus != nullptr)
+//		{
+//			if (newTarget == nullptr || newTarget != currentFocus)
+//			{
+//				//do stuff here (some elements may demand focus or be hidden when they lose focus)
+//			}
+//		}
+//		//Call the handleMouse method for the targeted element
+//		if (newTarget != nullptr)
+//		{
+//			newTarget->handleMouseLeftClick(xLocation, yLocation);
+//		}
+//	}
+//	else if (mouseEvent->type == SDL_MOUSEBUTTONUP)
+//	{
+//		float xLocation = (float)mouseEvent->button.x;
+//		float yLocation = (float)(height - mouseEvent->button.y);	//UI elements are defined in bottom to top coordinate space, which is the opposite of what SDL gives for click coordinates
+//		for (Uint32 i = 0; i < topLevelElements.size(); i++)
+//		{
+//			if (topLevelElements.at(i)->hasFocus)
+//			{
+//				topLevelElements.at(i)->handleMouseLeftUnclick(xLocation, yLocation);
+//			}
+//		}
+//	}
+//}
 
-void UIManager::handleKeyboardInput(SDL_Event* keyboardEvent)
-{
-	//find the top level element that currently has focus
-	//call the handlekeypress method for that element. It will call for its children as required
-	for (Uint32 i = 0; i < topLevelElements.size(); i++)
-	{
-		if (topLevelElements.at(i)->hasFocus)
-		{
-			topLevelElements.at(i)->handleKeypress(keyboardEvent);
-		}
-	}
-}
+//void UIManager::handleKeyboardInput(SDL_Event* keyboardEvent)
+//{
+//	//find the top level element that currently has focus
+//	//call the handlekeypress method for that element. It will call for its children as required
+//	for (Uint32 i = 0; i < topLevelElements.size(); i++)
+//	{
+//		if (topLevelElements.at(i)->hasFocus)
+//		{
+//			topLevelElements.at(i)->handleKeypress(keyboardEvent);
+//		}
+//	}
+//}
 
 void UIManager::drawInterface(glm::mat4 projectionMatrix)
 {

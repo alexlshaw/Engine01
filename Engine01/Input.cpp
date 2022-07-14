@@ -1,129 +1,80 @@
 #include "Input.h"
 
-void handleKeys(float delta, Camera* cam)
+using namespace Input;
+
+float Input::getVerticalAxis()
 {
-	const Uint8 *keys = SDL_GetKeyboardState(nullptr);
-	if (keys[SDL_SCANCODE_W])
-	{
-		cam->forward(delta * velocity);
-	}
-	if (keys[SDL_SCANCODE_S])
-	{
-		cam->forward(delta * -velocity);
-	}
-	if (keys[SDL_SCANCODE_A])
-	{
-		cam->pan(delta * velocity);
-	}
-	if (keys[SDL_SCANCODE_D])
-	{
-		cam->pan(delta * -velocity);
-	}
-	if (keys[SDL_SCANCODE_SPACE])
-	{
-		cam->rise(delta * velocity);
-	}
-	if (keys[SDL_SCANCODE_LSHIFT])
-	{
-		cam->rise(delta * -velocity);
-	}
-	if (keys[SDL_SCANCODE_TAB] && !keyTabLastDownState)
-	{
-		keyTabLastDownState = true;
-	}
-	else if (!keys[SDL_SCANCODE_TAB])
-	{
-		keyTabLastDownState = false;
-	}
-	if (keys[SDL_SCANCODE_F] && !keyFLastDownState)
-	{
-		keyFLastDownState = true;
-		cam->floating = !cam->floating;
-	}
-	else if (!keys[SDL_SCANCODE_F])
-	{
-		keyFLastDownState = false;
-	}
-	if (keys[SDL_SCANCODE_K] && !keyKLastDownState)
-	{
-		keyKLastDownState = true;
-	}
-	else if (!keys[SDL_SCANCODE_K])
-	{
-		keyKLastDownState = false;
-	}
-	if (keys[SDL_SCANCODE_M] && !keyMLastDownState)
-	{
-		worldMap->visible = !worldMap->visible;
-		keyMLastDownState = true;
-	}
-	else if (!keys[SDL_SCANCODE_M])
-	{
-		keyMLastDownState = false;
-	}
-	if (keys[SDL_SCANCODE_N] && !keyNLastDownState)
-	{
-		worldMap->cycleActiveMapType();
-		keyNLastDownState = true;
-	}
-	else if (!keys[SDL_SCANCODE_N])
-	{
-		keyNLastDownState = false;
-	}
-	if (keys[SDL_SCANCODE_O] && !keyOLastDownState)
-	{
-		debugMode = !debugMode;
-		keyOLastDownState = true;
-	}
-	else if (!keys[SDL_SCANCODE_O])
-	{
-		keyOLastDownState = false;
-	}
-	if (keys[SDL_SCANCODE_R] && !keyRLastDownState)
-	{
-		velocity = velocity == walkingSpeed ? boostSpeed : walkingSpeed;
-		keyRLastDownState = true;
-	}
-	else if (!keys[SDL_SCANCODE_R])
-	{
-		keyRLastDownState = false;
-	}
-	if (keys[SDL_SCANCODE_ESCAPE])
-	{
-		exiting = true;
-	}
+	//return keyWState ? 1.0f : (keySState ? -1.0f : 0.0f);
+	return keyStates[GLFW_KEY_W] ? 1.0f : (keyStates[GLFW_KEY_S] ? -1.0f : 0.0f);
 }
 
-void handleMouse(float delta, SDL_Event event, Camera* cam)
+float Input::getHorizontalAxis()
 {
-	if (newEvent)
+	//return keyAState ? 1.0f : (keyDState ? -1.0f : 0.0f);
+	return keyStates[GLFW_KEY_A] ? 1.0f : (keyStates[GLFW_KEY_D] ? -1.0f : 0.0f);
+}
+
+float Input::getMouseVerticalAxis()
+{
+	float delta = (float)(lastMouseY - mouseY);
+	delta /= mouseSensitivity;
+	if (delta < -1.0f) delta = -1.0f;
+	if (delta > 1.0f) delta = 1.0f;
+	return delta;
+}
+
+float Input::getMouseHorizontalAxis()
+{
+	float delta = (float)(lastMouseX - mouseX);
+	delta /= mouseSensitivity;
+	if (delta < -1.0f) delta = -1.0f;
+	if (delta > 1.0f) delta = 1.0f;
+	return delta;
+}
+
+bool Input::getKeyState(int glfwKeyCode)
+{
+	return keyStates[glfwKeyCode];
+}
+
+bool Input::getKeyDown(int glfwKeyCode)
+{
+	return keyStates[glfwKeyCode] && !keyLastStates[glfwKeyCode];
+}
+
+bool Input::getKeyUp(int glfwKeyCode)
+{
+	return !keyStates[glfwKeyCode] && keyLastStates[glfwKeyCode];
+}
+
+void Input::key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+	bool keyDown = action == GLFW_PRESS || action == GLFW_REPEAT;
+	keyStates[key] = keyDown;
+}
+
+void Input::cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
+{
+	mouseX = xpos;
+	mouseY = ypos;
+}
+
+void Input::mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
+{
+
+}
+
+void Input::scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
+{
+
+}
+
+void Input::update()
+{
+	for (int i = 0; i < GLFW_KEY_LAST + 1; i++)
 	{
-		if (event.type == SDL_MOUSEMOTION)
-		{
-			cam->updateDirection((float)-event.motion.xrel, (float)-event.motion.yrel);
-		}
-
-		if (event.type == SDL_MOUSEBUTTONDOWN)
-		{
-			if (event.button.button == SDL_BUTTON_LEFT)
-			{
-
-			}
-			if (event.button.button == SDL_BUTTON_RIGHT)
-			{
-
-			}
-		}
-		if (event.type == SDL_MOUSEBUTTONUP)
-		{
-			if (event.button.button == SDL_BUTTON_LEFT)
-			{
-
-			}
-			if (event.button.button == SDL_BUTTON_RIGHT)
-			{
-
-			}
-		}
+		keyLastStates[i] = keyStates[i];
 	}
+	lastMouseX = mouseX;
+	lastMouseY = mouseY;
 }

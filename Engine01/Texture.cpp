@@ -135,8 +135,8 @@ GLbyte* readTGABits(const char *szFileName, GLint *iWidth, GLint *iHeight, GLint
 		*iComponents = GL_RGBA;
 		break;
 	case 1:
-		*eFormat = GL_LUMINANCE;
-		*iComponents = GL_LUMINANCE;
+		*eFormat = GL_RED;
+		*iComponents = GL_RED;
 		break;
 	default:        // RGB
 		break;

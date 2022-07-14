@@ -1,7 +1,7 @@
 #ifndef ENGINE01_TIME_H
 #define ENGINE01_TIME_H
 
-const static enum SEASONS {SUMMER, AUTUMN, WINTER, SPRING};
+const enum SEASONS {SUMMER, AUTUMN, WINTER, SPRING};
 
 const static int TIME_SCALE = 60;	//Every minute in real time = 60 minutes in game time
 

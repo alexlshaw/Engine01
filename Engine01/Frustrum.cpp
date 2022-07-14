@@ -22,7 +22,7 @@ void Frustrum::setCamInternals(float angle, float ratio, float nearDistance, flo
 
 //position of camera, point where camera is looking, up vector
 //near plane (and presumably far plane) are probably correct, but sides and top are not
-void Frustrum::setCamDef(glm::vec3 &position, glm::vec3 &look, glm::vec3 &up)
+void Frustrum::setCamDef(glm::vec3 position, glm::vec3 look, glm::vec3 up)
 {
 	glm::vec3 nearCenter, farCenter, X, Y, Z;
 	//compute z axis of camera

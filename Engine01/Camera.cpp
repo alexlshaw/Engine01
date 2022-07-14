@@ -8,6 +8,10 @@ Camera::Camera()
 	floating = false;
 	horizontalAngle = 90.0f;
 	verticalAngle = 90.0f;
+	aspectRatio = 1.0f;
+	projectionMatrix = glm::identity<glm::mat4>();
+	viewMatrix = glm::identity<glm::mat4>();
+	viewMatrixOrigin = glm::identity<glm::mat4>();
 }
 
 Camera::Camera(glm::vec3 pos, glm::vec3 dir, bool isFloating, int screenWidth, int screenHeight)
@@ -60,7 +64,7 @@ void Camera::rise(float delta)
 void Camera::updateDirection(float dx, float dy)
 {
 	//pitch
-	float newAngle = verticalAngle - dy * LOOK_SENSITIVITY;
+	float newAngle = verticalAngle - dy;
 	//first make sure the angle is in the 0 - 360 range
 	if (newAngle <= 0.0)
 	{
@@ -86,7 +90,7 @@ void Camera::updateDirection(float dx, float dy)
 	}
 
 	//yaw
-	horizontalAngle -= dx * LOOK_SENSITIVITY;
+	horizontalAngle -= dx;
 	if (horizontalAngle < 0.0)
 	{
 		horizontalAngle += 360.0;
