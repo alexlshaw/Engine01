@@ -17,7 +17,6 @@ class Rock : public GameObject
 {
 private:
 	Mesh* mesh;
-	void buildMesh();
 	void buildMeshScatterMethod(RockType* rockType);
 public:
 	Rock(RockType* rockType);

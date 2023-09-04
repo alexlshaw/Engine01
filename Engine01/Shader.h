@@ -61,6 +61,12 @@ public:
 	void setUniform(GLint location, float val);
 	void setUniform(GLint location, int val);
 	void setUniform(GLint location, bool val);
+
+	void setUniform(const char* location, const vec3& v);
+	void setUniform(const char* location, const float f);
+	void setUniform(const char* location, const mat3& m);
+	void setUniform(const char* location, const mat4& m);
+
 	void printActiveUniforms();
 	void printActiveAttribs();
 };

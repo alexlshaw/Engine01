@@ -432,3 +432,28 @@ bool Shader::fileExists(const string& fileName)
 	retVal = stat(fileName.c_str(), &info);
 	return retVal == 0;
 }
+
+
+void Shader::setUniform(const char* location, const vec3& v)
+{
+	int loc = getUniformLocation(location);
+	glUniform3f(loc, v.x, v.y, v.z);
+}
+
+void Shader::setUniform(const char* location, const float f)
+{
+	int loc = getUniformLocation(location);
+	glUniform1f(loc, f);
+}
+
+void Shader::setUniform(const char* location, const mat3& m)
+{
+	int loc = getUniformLocation(location);
+	glUniformMatrix4fv(loc, 1, GL_FALSE, &m[0][0]);
+}
+
+void Shader::setUniform(const char* location, const mat4& m)
+{
+	int loc = getUniformLocation(location);
+	glUniformMatrix4fv(loc, 1, GL_FALSE, &m[0][0]);
+}

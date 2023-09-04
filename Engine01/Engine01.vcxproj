@@ -131,6 +131,7 @@ xcopy /y /s "$(ProjectDir)Shaders\*.*" "$(OutDir)Shaders"</Command>
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="Sphere.cpp" />
+    <ClCompile Include="StaticMesh.cpp" />
     <ClCompile Include="Task.cpp" />
     <ClCompile Include="TaskManager.cpp" />
     <ClCompile Include="TerrainRenderer.cpp" />
@@ -178,6 +179,7 @@ xcopy /y /s "$(ProjectDir)Shaders\*.*" "$(OutDir)Shaders"</Command>
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Skybox.h" />
     <ClInclude Include="Sphere.h" />
+    <ClInclude Include="StaticMesh.h" />
     <ClInclude Include="Task.h" />
     <ClInclude Include="TaskManager.h" />
     <ClInclude Include="TerrainRenderer.h" />

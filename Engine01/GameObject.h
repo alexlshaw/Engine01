@@ -1,6 +1,7 @@
 #ifndef ENGINE01_GAMEOBJECT_H
 #define ENGINE01_GAMEOBJECT_H
 
+#include <string>
 #include <vector>
 
 #include "Camera.h"
@@ -19,6 +20,8 @@ public:
 	virtual int getRenderPasses();
 	virtual void activateMaterial(int renderPass, Camera* camera);
 	float drawDistanceScale = DEFAULT_DRAW_SCALE;
+	std::string name = "";
+	bool noCull = false;	//if true, the scene never tries to cull the object if it is outside the camera's frustrum
 };
 
 #endif
